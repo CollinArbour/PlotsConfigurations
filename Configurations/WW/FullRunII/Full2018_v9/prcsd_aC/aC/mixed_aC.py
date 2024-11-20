@@ -12,7 +12,7 @@ ops = {}
 sm_wt = 'LHEReweightingWeight[0]'
 ops['sm'] = {'sm': sm_wt}
 
-log = open('./log_of_aC_wts.txt','w')
+log = open('./aC_wts_log.txt','w')
 log.write('Recording assembly of WC weights in human readable form:\n')
 
 for i,op in enumerate(op_nms):
@@ -20,7 +20,7 @@ for i,op in enumerate(op_nms):
     wtm1_idx = wtp1_idx + 8
 
     slq_wt = f'LHEReweightingWeight[{wtp1_idx}]'
-    quad_wt = f'0.5(LHEReweightingWeight[{wtp1_idx}]+LHEReweightingWeight[{wtm1_idx}]-2*LHEReweightingWeight[0])'
+    quad_wt = f'0.5*(LHEReweightingWeight[{wtp1_idx}]+LHEReweightingWeight[{wtm1_idx}]-2*LHEReweightingWeight[0])'
     lin_wt = f'0.5*(LHEReweightingWeight[{wtp1_idx}]-LHEReweightingWeight[{wtm1_idx}])'
 
     #  Logging weights ---------------------------------------------
@@ -36,7 +36,7 @@ for i,op in enumerate(op_nms):
     # Storing weights in dictionary for sample production
     ops[op] = {f'sm_lin_quad_{op}':slq_wt,
             f'quad_{op}':quad_wt,
-            f'quad_{op}':lin_wt
+            f'lin_{op}':lin_wt
         }
 
     # Now acquiring the mixed weights
@@ -60,38 +60,30 @@ for i,op in enumerate(op_nms):
 
         ops[f'{op}_{op2}'] = {f'mixed_{op}_{op2}':mxd_wt}
 
-#for i in range(len(op_nms)):
-#    wt_idx = i+1 
-#    lin_wt = '(LHEReweightingWeight[{}]-LHEReweightingWeight[{}])/2'.format(wt_idx,wt_idx+8)
-#    quad_wt = '(LHEReweightingWeight[{}]+LHEReweightingWeight[{}]-2*{})/2'.format(wt_idx,wt_idx+8,sm_wt)
-#    slq_wt = '({}+{}+{})'.format(sm_wt, lin_wt, quad_wt)
-#
-#
-#    ops[op_nms[i]] = { 'lin_{}'.format(op_nms[i]): lin_wt,
-#        'quad_{}'.format(op_nms[i]): quad_wt,
-#        'sm_lin_quad_{}'.format(op_nms[i]): slq_wt
-#        }
-##
-##for i in range(len(op_nms)-1):
-##    iwt_idx = i+1
-##    op1 = op_nms[i]
-##    for j in range(i+1,len(op_nms)):
-##        jwt_idx = j+1
-##        op2 = op_nms[j]
-##
-##        print('mixed_{}_{}'.format(op1,op2))
-##        
-##        mxd_wt_idx = mxd[i] + j-iwt_idx
-##        mxd_wt = 'LHEReweightingWeight[{}]'.format(mxd_wt_idx)
-##        # [sm_lin_quad_A] + [sm_lin_quad_B] - sm (to get rid of duplicate sm) + 2*[mixed]
-##        slqlq2m_wt = '{}+{}-{}+2*{}'.format(ops[op1]['sm_lin_quad_{}'.format(op1)],ops[op2]['sm_lin_quad_{}'.format(op2)],sm_wt,mxd_wt)
-##
-##        ops['{}_{}'.format(op1,op2)] = { 'mixed_{}_{}'.format(op1,op2): mxd_wt,
-##                'sm_lin_quad_mixed_{}_{}'.format(op1,op2): slqlq2m_wt
-##            }
+log.write('\n\n-----------------------------------------'+'\n')
+log.write('Getting sm_lin_quad_mixed_OP1_OP2 Weights'+'\n')
+log.write('-----------------------------------------'+'\n')
+for key in ops.keys():
+    if '_' not in key:
+        continue
 
+    op1,op2 = key.split('_')
+    log.write(f'\tFor operators:  {op1} and {op2}'+'\n')
 
-with open('test_aC_wts.json','w') as fl:
+    lin1 = ops[op1][f'lin_{op1}']
+    quad1 = ops[op1][f'quad_{op1}']
+
+    lin2 = ops[op2][f'lin_{op2}']
+    quad2 = ops[op2][f'quad_{op2}']
+
+    mxd_wt = ops[key][f'mixed_{key}']
+
+    sllqqm_wt = f'({sm_wt}+{lin1}+{lin2}+{quad1}+{quad2}+2*{mxd_wt})'
+    log.write(f'\t\tsm_lin_quad_mixed_{key} : {sllqqm_wt}'+'\n')
+
+    ops[key][f'sm_lin_quad_mixed_{key}'] = sllqqm_wt
+
+with open('aC_wts.json','w') as fl:
     json.dump(ops,fl)
 
 log.close()
