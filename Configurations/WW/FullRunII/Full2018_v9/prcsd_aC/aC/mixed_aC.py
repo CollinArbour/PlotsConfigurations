@@ -56,32 +56,9 @@ for i,op in enumerate(op_nms):
 
         log.write(f'\t\t\t Ops:\t {op} & {op2} (WC+1: {op2_wtp1_idx}, WC-1: {op2_wtm1_idx})'+'\n')
         log.write(f'\t\t Indices:\t {mxd[i]} + {j-wtp1_idx} = {mxd_wt_idx}'+'\n')
-        log.write(f'\t\t\t\tmixed_{op}_{op2}: {mxd_wt}'+ '\n')
+        log.write(f'\t\t\t\tsm_lin_quad_mixed_{op}_{op2}: {mxd_wt}'+ '\n')
 
-        ops[f'{op}_{op2}'] = {f'mixed_{op}_{op2}':mxd_wt}
-
-log.write('\n\n-----------------------------------------'+'\n')
-log.write('Getting sm_lin_quad_mixed_OP1_OP2 Weights'+'\n')
-log.write('-----------------------------------------'+'\n')
-for key in ops.keys():
-    if '_' not in key:
-        continue
-
-    op1,op2 = key.split('_')
-    log.write(f'\tFor operators:  {op1} and {op2}'+'\n')
-
-    lin1 = ops[op1][f'lin_{op1}']
-    quad1 = ops[op1][f'quad_{op1}']
-
-    lin2 = ops[op2][f'lin_{op2}']
-    quad2 = ops[op2][f'quad_{op2}']
-
-    mxd_wt = ops[key][f'mixed_{key}']
-
-    sllqqm_wt = f'({sm_wt}+{lin1}+{lin2}+{quad1}+{quad2}+2*{mxd_wt})'
-    log.write(f'\t\tsm_lin_quad_mixed_{key} : {sllqqm_wt}'+'\n')
-
-    ops[key][f'sm_lin_quad_mixed_{key}'] = sllqqm_wt
+        ops[f'{op}_{op2}'] = {f'sm_lin_quad_mixed_{op}_{op2}':mxd_wt}
 
 with open('aC_wts.json','w') as fl:
     json.dump(ops,fl)

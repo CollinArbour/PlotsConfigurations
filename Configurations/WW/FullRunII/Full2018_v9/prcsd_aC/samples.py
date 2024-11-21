@@ -245,7 +245,7 @@ signals = []
 
 # My Operators  ('sm' should be included)
 mops = ['sm', 'cW', 'cll1']
-exclude = ['lin_cW','lin_cll1','mixed_cW_cll1']
+exclude = ['lin_cW','lin_cll1']
 #mops = ['sm', 'cW', 'cHDD', 'cHWB', 'cHl3', 'cHq3', 'cll1']
 m_fpj = 20
 
