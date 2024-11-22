@@ -35,8 +35,8 @@ for i,op in enumerate(op_nms):
 
     # Storing weights in dictionary for sample production
     ops[op] = {f'sm_lin_quad_{op}':slq_wt,
-            f'quad_{op}':quad_wt,
-            f'lin_{op}':lin_wt
+            f'quad_{op}':quad_wt
+            #f'lin_{op}':lin_wt
         }
 
     # Now acquiring the mixed weights
