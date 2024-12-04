@@ -1,0 +1,162 @@
+Recording assembly of WC weights in human readable form:
+
+Wilson Coefficient: cW ----
+			 WC+1 	 WC-1
+	index 	  1 	  9
+	sm_lin_quad_cW: LHEReweightingWeight[1]
+	lin_cW: 0.5*(LHEReweightingWeight[1]-LHEReweightingWeight[9])
+	quad_cW: 0.5*(LHEReweightingWeight[1]+LHEReweightingWeight[9]-2*LHEReweightingWeight[0])
+
+
+	Acquiring mixed term interference terms:
+			 Ops:	 cW & cHDD (WC+1: 2, WC-1: 10)
+		 Indices:	 17 + 0 = 17
+				sm_lin_quad_mixed_cW_cHDD: LHEReweightingWeight[17]
+			 Ops:	 cW & cHWB (WC+1: 3, WC-1: 11)
+		 Indices:	 17 + 1 = 18
+				sm_lin_quad_mixed_cW_cHWB: LHEReweightingWeight[18]
+			 Ops:	 cW & cHl1 (WC+1: 4, WC-1: 12)
+		 Indices:	 17 + 2 = 19
+				sm_lin_quad_mixed_cW_cHl1: LHEReweightingWeight[19]
+			 Ops:	 cW & cHl3 (WC+1: 5, WC-1: 13)
+		 Indices:	 17 + 3 = 20
+				sm_lin_quad_mixed_cW_cHl3: LHEReweightingWeight[20]
+			 Ops:	 cW & cHq1 (WC+1: 6, WC-1: 14)
+		 Indices:	 17 + 4 = 21
+				sm_lin_quad_mixed_cW_cHq1: LHEReweightingWeight[21]
+			 Ops:	 cW & cHq3 (WC+1: 7, WC-1: 15)
+		 Indices:	 17 + 5 = 22
+				sm_lin_quad_mixed_cW_cHq3: LHEReweightingWeight[22]
+			 Ops:	 cW & cll1 (WC+1: 8, WC-1: 16)
+		 Indices:	 17 + 6 = 23
+				sm_lin_quad_mixed_cW_cll1: LHEReweightingWeight[23]
+
+Wilson Coefficient: cHDD ----
+			 WC+1 	 WC-1
+	index 	  2 	  10
+	sm_lin_quad_cHDD: LHEReweightingWeight[2]
+	lin_cHDD: 0.5*(LHEReweightingWeight[2]-LHEReweightingWeight[10])
+	quad_cHDD: 0.5*(LHEReweightingWeight[2]+LHEReweightingWeight[10]-2*LHEReweightingWeight[0])
+
+
+	Acquiring mixed term interference terms:
+			 Ops:	 cHDD & cHWB (WC+1: 3, WC-1: 11)
+		 Indices:	 24 + 0 = 24
+				sm_lin_quad_mixed_cHDD_cHWB: LHEReweightingWeight[24]
+			 Ops:	 cHDD & cHl1 (WC+1: 4, WC-1: 12)
+		 Indices:	 24 + 1 = 25
+				sm_lin_quad_mixed_cHDD_cHl1: LHEReweightingWeight[25]
+			 Ops:	 cHDD & cHl3 (WC+1: 5, WC-1: 13)
+		 Indices:	 24 + 2 = 26
+				sm_lin_quad_mixed_cHDD_cHl3: LHEReweightingWeight[26]
+			 Ops:	 cHDD & cHq1 (WC+1: 6, WC-1: 14)
+		 Indices:	 24 + 3 = 27
+				sm_lin_quad_mixed_cHDD_cHq1: LHEReweightingWeight[27]
+			 Ops:	 cHDD & cHq3 (WC+1: 7, WC-1: 15)
+		 Indices:	 24 + 4 = 28
+				sm_lin_quad_mixed_cHDD_cHq3: LHEReweightingWeight[28]
+			 Ops:	 cHDD & cll1 (WC+1: 8, WC-1: 16)
+		 Indices:	 24 + 5 = 29
+				sm_lin_quad_mixed_cHDD_cll1: LHEReweightingWeight[29]
+
+Wilson Coefficient: cHWB ----
+			 WC+1 	 WC-1
+	index 	  3 	  11
+	sm_lin_quad_cHWB: LHEReweightingWeight[3]
+	lin_cHWB: 0.5*(LHEReweightingWeight[3]-LHEReweightingWeight[11])
+	quad_cHWB: 0.5*(LHEReweightingWeight[3]+LHEReweightingWeight[11]-2*LHEReweightingWeight[0])
+
+
+	Acquiring mixed term interference terms:
+			 Ops:	 cHWB & cHl1 (WC+1: 4, WC-1: 12)
+		 Indices:	 30 + 0 = 30
+				sm_lin_quad_mixed_cHWB_cHl1: LHEReweightingWeight[30]
+			 Ops:	 cHWB & cHl3 (WC+1: 5, WC-1: 13)
+		 Indices:	 30 + 1 = 31
+				sm_lin_quad_mixed_cHWB_cHl3: LHEReweightingWeight[31]
+			 Ops:	 cHWB & cHq1 (WC+1: 6, WC-1: 14)
+		 Indices:	 30 + 2 = 32
+				sm_lin_quad_mixed_cHWB_cHq1: LHEReweightingWeight[32]
+			 Ops:	 cHWB & cHq3 (WC+1: 7, WC-1: 15)
+		 Indices:	 30 + 3 = 33
+				sm_lin_quad_mixed_cHWB_cHq3: LHEReweightingWeight[33]
+			 Ops:	 cHWB & cll1 (WC+1: 8, WC-1: 16)
+		 Indices:	 30 + 4 = 34
+				sm_lin_quad_mixed_cHWB_cll1: LHEReweightingWeight[34]
+
+Wilson Coefficient: cHl1 ----
+			 WC+1 	 WC-1
+	index 	  4 	  12
+	sm_lin_quad_cHl1: LHEReweightingWeight[4]
+	lin_cHl1: 0.5*(LHEReweightingWeight[4]-LHEReweightingWeight[12])
+	quad_cHl1: 0.5*(LHEReweightingWeight[4]+LHEReweightingWeight[12]-2*LHEReweightingWeight[0])
+
+
+	Acquiring mixed term interference terms:
+			 Ops:	 cHl1 & cHl3 (WC+1: 5, WC-1: 13)
+		 Indices:	 35 + 0 = 35
+				sm_lin_quad_mixed_cHl1_cHl3: LHEReweightingWeight[35]
+			 Ops:	 cHl1 & cHq1 (WC+1: 6, WC-1: 14)
+		 Indices:	 35 + 1 = 36
+				sm_lin_quad_mixed_cHl1_cHq1: LHEReweightingWeight[36]
+			 Ops:	 cHl1 & cHq3 (WC+1: 7, WC-1: 15)
+		 Indices:	 35 + 2 = 37
+				sm_lin_quad_mixed_cHl1_cHq3: LHEReweightingWeight[37]
+			 Ops:	 cHl1 & cll1 (WC+1: 8, WC-1: 16)
+		 Indices:	 35 + 3 = 38
+				sm_lin_quad_mixed_cHl1_cll1: LHEReweightingWeight[38]
+
+Wilson Coefficient: cHl3 ----
+			 WC+1 	 WC-1
+	index 	  5 	  13
+	sm_lin_quad_cHl3: LHEReweightingWeight[5]
+	lin_cHl3: 0.5*(LHEReweightingWeight[5]-LHEReweightingWeight[13])
+	quad_cHl3: 0.5*(LHEReweightingWeight[5]+LHEReweightingWeight[13]-2*LHEReweightingWeight[0])
+
+
+	Acquiring mixed term interference terms:
+			 Ops:	 cHl3 & cHq1 (WC+1: 6, WC-1: 14)
+		 Indices:	 39 + 0 = 39
+				sm_lin_quad_mixed_cHl3_cHq1: LHEReweightingWeight[39]
+			 Ops:	 cHl3 & cHq3 (WC+1: 7, WC-1: 15)
+		 Indices:	 39 + 1 = 40
+				sm_lin_quad_mixed_cHl3_cHq3: LHEReweightingWeight[40]
+			 Ops:	 cHl3 & cll1 (WC+1: 8, WC-1: 16)
+		 Indices:	 39 + 2 = 41
+				sm_lin_quad_mixed_cHl3_cll1: LHEReweightingWeight[41]
+
+Wilson Coefficient: cHq1 ----
+			 WC+1 	 WC-1
+	index 	  6 	  14
+	sm_lin_quad_cHq1: LHEReweightingWeight[6]
+	lin_cHq1: 0.5*(LHEReweightingWeight[6]-LHEReweightingWeight[14])
+	quad_cHq1: 0.5*(LHEReweightingWeight[6]+LHEReweightingWeight[14]-2*LHEReweightingWeight[0])
+
+
+	Acquiring mixed term interference terms:
+			 Ops:	 cHq1 & cHq3 (WC+1: 7, WC-1: 15)
+		 Indices:	 42 + 0 = 42
+				sm_lin_quad_mixed_cHq1_cHq3: LHEReweightingWeight[42]
+			 Ops:	 cHq1 & cll1 (WC+1: 8, WC-1: 16)
+		 Indices:	 42 + 1 = 43
+				sm_lin_quad_mixed_cHq1_cll1: LHEReweightingWeight[43]
+
+Wilson Coefficient: cHq3 ----
+			 WC+1 	 WC-1
+	index 	  7 	  15
+	sm_lin_quad_cHq3: LHEReweightingWeight[7]
+	lin_cHq3: 0.5*(LHEReweightingWeight[7]-LHEReweightingWeight[15])
+	quad_cHq3: 0.5*(LHEReweightingWeight[7]+LHEReweightingWeight[15]-2*LHEReweightingWeight[0])
+
+
+	Acquiring mixed term interference terms:
+			 Ops:	 cHq3 & cll1 (WC+1: 8, WC-1: 16)
+		 Indices:	 44 + 0 = 44
+				sm_lin_quad_mixed_cHq3_cll1: LHEReweightingWeight[44]
+
+Wilson Coefficient: cll1 ----
+			 WC+1 	 WC-1
+	index 	  8 	  16
+	sm_lin_quad_cll1: LHEReweightingWeight[8]
+	lin_cll1: 0.5*(LHEReweightingWeight[8]-LHEReweightingWeight[16])
+	quad_cll1: 0.5*(LHEReweightingWeight[8]+LHEReweightingWeight[16]-2*LHEReweightingWeight[0])
