@@ -9,6 +9,13 @@ for iproc in samples.keys():
         'isData'   : 1 if iproc == 'DATA' else 0,
     }
 
+mops = ['cW', 'cHDD', 'cHWB', 'cHl3', 'cHq3', 'cll1']
+
+for op in mops:
+    structure['quad_{}'.format(op)]['removeStatUnc'] = 1
+    structure['sm_lin_quad_{}'.format(op)]['removeStatUnc'] = 1
+
+
 for nuis in nuisances.itervalues():
   if 'cutspost' in nuis:
     nuis['cuts'] = nuis['cutspost'](nuis, cuts)

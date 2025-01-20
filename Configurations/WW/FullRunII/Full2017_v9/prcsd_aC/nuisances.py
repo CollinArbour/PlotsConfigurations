@@ -14,6 +14,8 @@ except NameError:
     def makeMCDirectory(x=''):
         return ''
 
+ac_mc = [skey for skey in signals if skey not in ['ggWW']]
+
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
 
@@ -319,7 +321,7 @@ nuisances['PU'] = {
     'type': 'shape',
     'samples': {
         'DY'      : ['1.001301*(puWeightUp/puWeight)', '1.000343*(puWeightDown/puWeight)'],
-        'WW'      : ['1.006317*(puWeightUp/puWeight)', '0.994146*(puWeightDown/puWeight)'],
+        #'WW'      : ['1.006317*(puWeightUp/puWeight)', '0.994146*(puWeightDown/puWeight)'],
         'ggWW'    : ['1.006331*(puWeightUp/puWeight)', '0.993645*(puWeightDown/puWeight)'],
         'WWewk'   : ['1.004517*(puWeightUp/puWeight)', '0.996367*(puWeightDown/puWeight)'],
         'Vg'      : ['1.001248*(puWeightUp/puWeight)', '1.006697*(puWeightDown/puWeight)'],
@@ -332,21 +334,18 @@ nuisances['PU'] = {
     'AsLnN': '0',
 }
 
+for template in ac_mc:
+    nuisances['PU']['samples'][template] = ['(puWeightUp/puWeight)', '(puWeightDown/puWeight)']
+
+
+
 ##### PS
 nuisances['PS_ISR']  = {
     'name': 'PS_ISR',
     'kind': 'weight',
     'type': 'shape',
     'AsLnN': '0',
-    'samples': dict((skey, ['PSWeight[2]', 'PSWeight[0]']) for skey in mc if skey not in signals),
-}
-
-nuisances['PS_ISR_ggWW'] = {
-    'name': 'PS_ISR_ggWW',
-    'type': 'lnN',
-    'samples': {
-        'ggWW': '1.0005',
-    },
+    'samples': dict((skey, ['PSWeight[2]', 'PSWeight[0]']) for skey in mc),
 }
 
 nuisances['PS_FSR']  = {
@@ -354,23 +353,14 @@ nuisances['PS_FSR']  = {
     'kind': 'weight',
     'type': 'shape',
     'AsLnN': '0',
-    'samples': dict((skey, ['PSWeight[3]', 'PSWeight[1]']) for skey in mc if skey not in signals),
-}
-
-
-nuisances['PS_FSR_ggWW'] = {
-    'name': 'PS_FSR_ggWW',
-    'type': 'lnN',
-    'samples': {
-        'ggWW': '1.0001',
-    },
+    'samples': dict((skey, ['PSWeight[3]', 'PSWeight[1]']) for skey in mc),
 }
 
 # UE
 nuisances['UE']  = {
                 'name'  : 'UE_CP5',
                 'type'  : 'lnN',
-                'samples': dict((skey, '1.015') for skey in mc if skey not in signals),
+                'samples': dict((skey, '1.015') for skey in mc),
 }
 
 ####### Generic "cross section uncertainties"
@@ -487,15 +477,18 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 
 # PDF
 pdf_variations = ["LHEPdfWeight[%d]" %(i+1) for i in range(100)] # Float_t LHE pdf variation weights (w_var / w_nominal) for LHA IDs 320901 - 321000
+
+ac_PDF = {}
+for template in ac_mc:
+    ac_PDF[template] = pdf_variations
+
 nuisances['pdf_WW']  = {
     'name'  : 'CMS_hww_pdf_WW',
     'kind'  : 'weight_rms',
     'type'  : 'shape',
     'AsLnN': '0',
-    'samples'  : {
-        'WW'   : pdf_variations,
-    },
-    'scale' : nfdict["pdf_WW"]
+    'samples'  : ac_PDF,
+    #'scale' : nfdict["pdf_WW"]
 }
 
 ##### Renormalization & factorization scales
@@ -527,18 +520,10 @@ nuisances['QCDscale_VV'] = {
     }
 }
 
-norm_QCD = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["QCDscale_WW"]["WW_"+binname][0]) for binname in diffcuts]),
-            '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["QCDscale_WW"]["WW_"+binname][1]) for binname in diffcuts])]
+for template in ac_mc:
+    nuisances['QCDscale_VV']['samples'][template] = variations
 
-nuisances['QCDscale_WW']  = {
-    'name'  : 'QCDscale_WW',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'AsLnN': '0',
-    'samples'  : {
-        'WW' : ['Alt$(LHEScaleWeight[0],1)*('+norm_QCD[0]+')','Alt$(LHEScaleWeight[8],1)*('+norm_QCD[1]+')'],
-    }
-}
+
 
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
 topScaleNormFactors = {
@@ -658,7 +643,7 @@ nuisances['stat'] = {
     'samples': {}
 }
 
-#### Use the following if you want to apply the MC stat nuisances accoriding to the standard approach
+### Use the following if you want to apply the MC stat nuisances accoriding to the standard approach
 #nuisances['stat']  = {
 #                # apply to the following samples: name of samples here must match keys in samples.py
 #               'samples'  : { 
@@ -691,37 +676,33 @@ nuisances['stat'] = {
 #                         'typeStat' : 'bbb',
 #                         },
 #
-#                   'sm': {  
-#                         'typeStat' : 'bbb',
-#                         },
-#                   
-#                   'sm_lin_quad_cW': {  
-#                         'typeStat' : 'bbb',
-#                         },
-#                   
-#                   'sm_lin_quad_cHDD': {  
-#                         'typeStat' : 'bbb',
-#                         },
-#                   
-#                   'sm_lin_quad_cHWB': {  
-#                         'typeStat' : 'bbb',
-#                         },
-#                   
-#                   'sm_lin_quad_cHl3': {  
-#                         'typeStat' : 'bbb',
-#                         },
+#                   #'sm': {  
+#                   #      'typeStat' : 'bbb',
+#                   #      },
+#                   #
+#                   #'sm_lin_quad_cW': {  
+#                   #      'typeStat' : 'bbb',
+#                   #      },
+#                   #
+#                   #'sm_lin_quad_cHDD': {  
+#                   #      'typeStat' : 'bbb',
+#                   #      },
+#                   #
+#                   #'sm_lin_quad_cHWB': {  
+#                   #      'typeStat' : 'bbb',
+#                   #      },
+#                   #
+#                   #'sm_lin_quad_cHl3': {  
+#                   #      'typeStat' : 'bbb',
+#                   #      },
 #
-#                   'sm_lin_quad_cHq3': {  
-#                         'typeStat' : 'bbb',
-#                         },
-#                   
-#                   'sm_lin_quad_cll1': {  
-#                         'typeStat' : 'bbb',
-#                         },
-#                   
-#                   'sm_lin_quad_mixed_cW_cll1': {  
-#                         'typeStat' : 'bbb',
-#                         },
+#                   #'sm_lin_quad_cHq3': {  
+#                   #      'typeStat' : 'bbb',
+#                   #      },
+#                   #
+#                   #'sm_lin_quad_cll1': {  
+#                   #      'typeStat' : 'bbb',
+#                   #      },
 #                 },
 #               'type'  : 'shape'
 #              }
