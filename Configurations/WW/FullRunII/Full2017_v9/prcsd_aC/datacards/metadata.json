@@ -1,0 +1,92 @@
+{
+    "analysis": "testPositivity",
+    "card": "datacard.txt",
+    "operators": {
+        "cHDD": [
+            -40.0,
+            60.0
+        ],
+        "cW": [
+            -2.0,
+            2.0
+        ],
+        "cHl3": [
+            -2.0,
+            2.0
+        ],
+        "cHq3": [
+            -2.0,
+            2.0
+        ],
+        "cll1": [
+            -2.0,
+            2.0
+        ],
+        "cHWB": [
+            -4.0,
+            4.0
+        ]
+    },
+    "nuisances": [
+        "CMS_PUID_2017",
+        "CMS_PU_2017",
+        "CMS_btag_cferr1",
+        "CMS_btag_cferr2",
+        "CMS_btag_hf",
+        "CMS_btag_hfstats1_2017",
+        "CMS_btag_hfstats2_2017",
+        "CMS_btag_lf",
+        "CMS_btag_lfstats1_2017",
+        "CMS_btag_lfstats2_2017",
+        "CMS_eff_e_2017",
+        "CMS_eff_hwwtrigger_2017",
+        "CMS_eff_m_2017",
+        "CMS_eff_prefiring_2017",
+        "CMS_fake_e_2017",
+        "CMS_fake_m_2017",
+        "CMS_fake_stat_e_2017",
+        "CMS_fake_stat_m_2017",
+        "CMS_fake_syst_em",
+        "CMS_fake_syst_me",
+        "CMS_hww_CRSR_accept_top",
+        "CMS_hww_WgStarScale",
+        "CMS_hww_pdf_WW",
+        "CMS_res_j_2017",
+        "CMS_scale_JESAbsolute",
+        "CMS_scale_JESAbsolute_2017",
+        "CMS_scale_JESBBEC1",
+        "CMS_scale_JESBBEC1_2017",
+        "CMS_scale_JESEC2",
+        "CMS_scale_JESEC2_2017",
+        "CMS_scale_JESFlavorQCD",
+        "CMS_scale_JESHF",
+        "CMS_scale_JESHF_2017",
+        "CMS_scale_JESRelativeBal",
+        "CMS_scale_JESRelativeSample_2017",
+        "CMS_scale_e_2017",
+        "CMS_scale_m_2017",
+        "CMS_scale_met_2017",
+        "PS_FSR",
+        "PS_ISR",
+        "QCDscale_Higgs",
+        "QCDscale_Higgs_ACCEPT",
+        "QCDscale_V",
+        "QCDscale_VV",
+        "QCDscale_WWewk",
+        "QCDscale_top_0j",
+        "QCDscale_top_1j",
+        "UE_CP5",
+        "lumi_13TeV_1718",
+        "lumi_13TeV_2017",
+        "lumi_13TeV_correlated",
+        "pdf_Higgs",
+        "pdf_Higgs_ACCEPT",
+        "pdf_qqbar",
+        "pdf_qqbar_ACCEPT",
+        "singleTopToTTbar",
+        "CMS_hww_Topnorm_0j",
+        "CMS_hww_Topnorm_1j",
+        "CMS_hww_Topnorm_0j",
+        "CMS_hww_Topnorm_1j"
+    ]
+}

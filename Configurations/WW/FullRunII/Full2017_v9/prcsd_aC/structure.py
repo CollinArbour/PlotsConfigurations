@@ -11,9 +11,11 @@ for iproc in samples.keys():
 
 mops = ['cW', 'cHDD', 'cHWB', 'cHl3', 'cHq3', 'cll1']
 
-for op in mops:
+for i,op in enumerate(mops):
     structure['quad_{}'.format(op)]['removeStatUnc'] = 1
     structure['sm_lin_quad_{}'.format(op)]['removeStatUnc'] = 1
+    for j in range(i+1,len(mops)):
+        structure['sm_lin_quad_mixed_{}_{}'.format(mops[i],mops[j])]['removeStatUnc'] = 1
 
 
 for nuis in nuisances.itervalues():
