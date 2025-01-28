@@ -16,6 +16,7 @@ parser.add_argument('-ppj','--pointsPerJob',type=int,dest='ppj',help='Submit job
 args = parser.parse_args()
 
 model = args.model
+workspace = args.workspace
 op1 = args.op1
 op2 = args.op2
 
@@ -98,7 +99,7 @@ tosub.write(f'log         = dev/null\n')
 
 
 
-tosub.write('+JobFlavour = "workday"\n')
+tosub.write('+JobFlavour = "microcentury"\n')
 tosub.write('MY.WantOS = "el7"\n')
 tosub.write('RequestCpus = 8\n')
 
@@ -121,9 +122,9 @@ for i in range(njobs):
     ptb = (i+1) * ppj - 1
 
     if op2:
-        out.write(f'{op1}\t{rng1}\t{op2}\t{rng2}\t{pts}\t{pta}\t{ptb}\t{pothops}\t{frz_ops}\n')
+        out.write(f'{workspace}\t{op1}\t{rng1}\t{op2}\t{rng2}\t{pts}\t{pta}\t{ptb}\t{pothops}\t{frz_ops}\n')
     else:
-        out.write(f'{op1}\t{rng1}\t{pts}\t{pta}\t{ptb}\t{pothops}\t{frz_ops}\n')
+        out.write(f'{workspace}\t{op1}\t{rng1}\t{pts}\t{pta}\t{ptb}\t{pothops}\t{frz_ops}\n')
 
 
 out.close()
